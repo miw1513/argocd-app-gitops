@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: k8s-prd-config
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:miw1513/k8s-prd-config.git
+    targetRevision: main
+    path: prd
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
